@@ -1075,7 +1075,7 @@ var codeMirrorFn = function() {
 		                    if (match!==null) {
 		                    	var token = match[0].trim();
 		                    	if (sol) {
-		                    		if (['title','author','homepage','background_color','text_color','key_repeat_interval','realtime_interval','again_interval','flickscreen','zoomscreen','color_palette','youtube'].indexOf(token)>=0) {
+		                    		if (['title','author','homepage','background_color','text_color','key_repeat_interval','realtime_interval','again_interval','flickscreen','zoomscreen','color_palette','youtube','color_palette_black','color_palette_white','color_palette_grey','color_palette_darkgrey','color_palette_lightgrey','color_palette_gray','color_palette_darkgray','color_palette_lightgray','color_palette_red','color_palette_darkred','color_palette_lightred','color_palette_brown','color_palette_darkbrown','color_palette_lightbrown','color_palette_orange','color_palette_yellow','color_palette_green','color_palette_darkgreen','color_palette_lightgreen','color_palette_blue','color_palette_lightblue','color_palette_darkblue','color_palette_purple','color_palette_pink'].indexOf(token)>=0) {
 		                    			
                                         if (token==='youtube' || token==='author' || token==='title') {
                                             stream.string=mixedCase;

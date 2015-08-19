@@ -42,6 +42,7 @@ function generateSpriteMatrix(dat) {
 
 var debugMode;
 var colorPalette;
+var colorPaletteReference;
 
 function generateExtraMembers(state) {
 
@@ -87,7 +88,8 @@ function generateExtraMembers(state) {
 	debugMode=false;
 	verbose_logging=false;
 	throttle_movement=false;
-	colorPalette=colorPalettes.arnecolors;
+	colorPalette={};
+	colorPaletteReference=colorPalettes.arnecolors;
 	for (var i=0;i<state.metadata.length;i+=2){
 		var key = state.metadata[i];
 		var val = state.metadata[i+1];
@@ -98,7 +100,7 @@ function generateExtraMembers(state) {
 			if (colorPalettes[val]===undefined) {
 				logError('Palette "'+val+'" not found, defaulting to arnecolors.',0);
 			}else {
-				colorPalette=colorPalettes[val];
+				colorPaletteReference=colorPalettes[val];
 			}
 		} else if (key==='debug') {
 			debugMode=true;
@@ -108,6 +110,20 @@ function generateExtraMembers(state) {
 			cache_console_messages=true;
 		} else if (key==='throttle_movement') {
 			throttle_movement=true;
+		} else if (key.startsWith("color_palette_")) {
+			var colorName = key.substr("color_palette_".length);
+			if (colorPaletteReference[colorName]===undefined) {
+				logError('Color "'+colorName+'" is invalid.');
+			}else {
+				colorPalette[colorName] = val;
+			}
+		}
+	}
+	
+	//build custom palette
+	for (var colorName in colorPaletteReference){
+		if (colorPalette[colorName]===undefined) {
+			colorPalette[colorName] = colorPaletteReference[colorName];
 		}
 	}
 
