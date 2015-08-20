@@ -99,22 +99,42 @@ Here are the possible options:
 			<dt>color_palette mastersystem</dt>
 			<dd>By default, when you use colour names, they are pulled from a variation of <a href="http://androidarts.com/palette/16pal.htm">Arne</a>'s 16-Colour palette.  However, there are other palettes to choose from:
 			<p>
-<ul>
-<li>1 - mastersystem </li>
-<li>2 - gameboycolour </li>
-<li>3 - amiga </li>
-<li>4 - arnecolors </li>
-<li>5 - famicom  </li>
-<li>6 - atari </li>
-<li>7 - pastel  </li>
-<li>8 - ega </li>
-<li>9 - amstrad </li>
-<li>10 - proteus_mellow </li>
-<li>11 - proteus_rich </li>
-<li>12 - proteus_night </li>
-<li>13 - c64 </li>
-<li>14 - whitingjp </li>
-</ul>
+<table id="palettes" style="margin-bottom: 10px"></table>
+<script type="text/javascript" src="../js/colors.js"></script>
+<script type="text/javascript">
+var colors = ["black", "white", "grey", "darkgrey", "lightgrey", "gray", "darkgray", "lightgray", "red", "darkred", "lightred", "brown", "darkbrown", "lightbrown", "orange", "yellow", "green", "darkgreen", "lightgreen", "purple", "pink"];
+var table = document.getElementById("palettes");
+
+for (var paletteIndex = 1; paletteIndex <= 14; paletteIndex++) {
+
+	var colorPaletteAlias = colorPalettesAliases[paletteIndex];
+	var colorPalette = colorPalettes[colorPaletteAlias];
+	
+	var row = document.createElement("tr");
+	table.appendChild(row);
+	
+	var index = document.createElement("td");
+	index.appendChild(document.createTextNode(paletteIndex));
+	index.style.paddingLeft = "40px";
+	index.style.paddingRight = "10px";
+	row.appendChild(index);
+	
+	var alias = document.createElement("td");
+	alias.appendChild(document.createTextNode(colorPaletteAlias));
+	alias.style.paddingRight = "10px";
+	row.appendChild(alias);
+	
+	for (var colorIndex = 0; colorIndex < colors.length; colorIndex++) {
+		var colorName = colors[colorIndex];
+		var preview = document.createElement("td");
+		preview.style.backgroundColor = colorPalette[colorName];
+		preview.style.width = "22px";
+		preview.alt = preview.title = colorName;
+		preview.class = "color";
+		row.appendChild(preview);
+	}
+}
+</script>
 <p>
 (you can also refer to them by their numerical index)
 			</dd>
